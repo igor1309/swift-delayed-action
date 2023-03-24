@@ -11,7 +11,6 @@ let package = Package(
         .delayedAction,
     ],
     dependencies: [
-        .casePaths,
         .combineSchedulers,
     ],
     targets: [
@@ -32,13 +31,18 @@ private extension Product {
 
 private extension Target {
     
-    static let delayedAction = target(name: .delayedAction)
+    static let delayedAction = target(
+        name: .delayedAction,
+        dependencies: [
+            // packages
+            .combineSchedulers,
+        ]
+    )
     static let delayedActionTests = testTarget(
         name: .delayedActionTests,
         dependencies: [
             .delayedAction,
             // packages
-            .casePaths,
             .combineSchedulers,
         ]
     )
