@@ -10,27 +10,3 @@ public enum Action {
     case immediate
     case delayed(ms: Int)
 }
-
-extension Action {
-    
-    public var delayMS: Int {
-        
-        switch self {
-        case .immediate:
-            return 0
-        case let .delayed(ms):
-            return ms
-        }
-    }
-    
-    public var label: String {
-        
-        switch self {
-        case .immediate:
-            return "immediate"
-            
-        case .delayed:
-            return "delayed"
-        }
-    }
-}

@@ -30,3 +30,27 @@ public final class Observer {
             .assign(to: &$actionString)
     }
 }
+
+private extension Action {
+    
+    var delayMS: Int {
+        
+        switch self {
+        case .immediate:
+            return 0
+        case let .delayed(ms):
+            return ms
+        }
+    }
+    
+    var label: String {
+        
+        switch self {
+        case .immediate:
+            return "immediate"
+            
+        case .delayed:
+            return "delayed"
+        }
+    }
+}
