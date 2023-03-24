@@ -1,28 +1,51 @@
 // swift-tools-version: 5.7
-// The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
     name: "swift-delayed-action",
+    platforms: [
+        .macOS(.v12)
+    ],
     products: [
-        // Products define the executables and libraries a package produces, and make them visible to other packages.
-        .library(
-            name: "swift-delayed-action",
-            targets: ["swift-delayed-action"]),
+        .delayedAction,
     ],
     dependencies: [
-        // Dependencies declare other packages that this package depends on.
-        // .package(url: /* package url */, from: "1.0.0"),
     ],
     targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages this package depends on.
-        .target(
-            name: "swift-delayed-action",
-            dependencies: []),
-        .testTarget(
-            name: "swift-delayed-actionTests",
-            dependencies: ["swift-delayed-action"]),
+        .delayedAction,
+        .delayedActionTests,
     ]
 )
+
+private extension Product {
+    
+    static let delayedAction = library(
+        name: .delayedAction,
+        targets: [
+            .delayedAction,
+        ]
+    )
+}
+
+private extension Target {
+    
+    static let delayedAction = target(name: .delayedAction)
+    static let delayedActionTests = testTarget(
+        name: .delayedActionTests,
+        dependencies: [
+            .delayedAction,
+        ]
+    )
+}
+
+private extension Target.Dependency {
+    
+    static let delayedAction = byName(name: .delayedAction)
+}
+
+private extension String {
+    
+    static let delayedAction = "DelayedAction"
+    static let delayedActionTests = "DelayedActionTests"
+}

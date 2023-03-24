@@ -1,5 +1,6 @@
+
+@testable import DelayedAction
 import XCTest
-@testable import swift_delayed_action
 
 final class swift_delayed_actionTests: XCTestCase {
     func testExample() throws {
