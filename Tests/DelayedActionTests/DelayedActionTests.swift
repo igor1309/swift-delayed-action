@@ -28,7 +28,10 @@ final class DelayedActionTests: XCTestCase {
         scheduler.advance()
         XCTAssertEqual(spy.values, ["immediate"])
 
-        scheduler.advance(by: .milliseconds(200))
+        scheduler.advance(by: .milliseconds(199))
+        XCTAssertEqual(spy.values, ["immediate"])
+
+        scheduler.advance(by: .milliseconds(1))
         XCTAssertEqual(spy.values, ["immediate", "delayed"])
     }
     
