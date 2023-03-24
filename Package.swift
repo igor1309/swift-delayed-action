@@ -11,6 +11,7 @@ let package = Package(
         .delayedAction,
     ],
     dependencies: [
+        .casePaths,
         .combineSchedulers,
     ],
     targets: [
@@ -37,6 +38,7 @@ private extension Target {
         dependencies: [
             .delayedAction,
             // packages
+            .casePaths,
             .combineSchedulers,
         ]
     )
